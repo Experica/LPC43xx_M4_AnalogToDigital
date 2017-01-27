@@ -134,6 +134,8 @@ int main(void)
 
     Board_DAC_Init(LPC_DAC);
     Chip_DAC_Init(LPC_DAC);
+    Chip_DAC_ConfigDAConverterControl(LPC_DAC, (DAC_CNT_ENA | DAC_DMA_ENA));
+    Chip_DAC_SetBias(LPC_DAC, DAC_MAX_UPDATE_RATE_400kHz);
 
     Chip_GPIO_SetPinDIROutput(LPC_GPIO_PORT, _GPIO_PORT, _GPIO_PIN);
 
