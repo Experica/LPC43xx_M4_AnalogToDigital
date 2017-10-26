@@ -17,7 +17,6 @@
 #endif
 
 #include <cr_section_macros.h>
-
 // TODO: insert other include files here
 
 // TODO: insert other definitions and declarations here
@@ -145,7 +144,6 @@ int main(void)
     Board_LED_Set(0, true);
 #endif
 #endif
-
     // TODO: insert code here
 
     // Force the counter to be placed into memory
