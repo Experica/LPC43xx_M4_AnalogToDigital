@@ -2,9 +2,9 @@
 ===============================================================================
  Name        : LPC43xx_M4_AnalogToDigital.c
  Author      : Li Alex Zhang
- Version     :
- Copyright   :
- Description : Convert Analog(0-3.3V) Input(Ch3) to TTL(Active-High) Output(P1_3, GPIO0[10])
+ Version     : 0.2
+ Copyright   : Li Alex Zhang
+ Description : Convert Analog(0-3.3V) Input(Ch3) to Digital(0-5V, Active-High) Output(P1_3, GPIO0[10])
 ===============================================================================
 */
 
@@ -36,13 +36,13 @@ static uint16_t thresholdMax;
 static bool DigitalOut=false;
 static bool IsAutoThres=true;
 
-#define SYSTICKRATE_HZ (1000)	/* 1000 ticks per second, 1ms systick interrupt */
+#define SYSTICKRATE_HZ (1000)	// 1000 ticks per second, 1ms systick interrupt
 static uint32_t autoThresDur = 5000; // 5000ms auto threshold period
 static uint32_t tick_ct = 0;
 
 
 /* Polling ADC */
-static void Polling_ADC(void)
+static inline void Polling_ADC(void)
 {
 	/* Start A/D conversion */
 	Chip_ADC_SetStartMode(_LPC_ADC_ID, ADC_START_NOW, ADC_TRIGGERMODE_RISING);
@@ -53,13 +53,13 @@ static void Polling_ADC(void)
 }
 
 /* Polling DAC */
-static void Polling_DAC(void)
+static inline void Polling_DAC(void)
 {
 	Chip_DAC_UpdateValue(LPC_DAC, dataADC);
 }
 
 /* Check Analog Input with Thresholds, Update Input Extreme Values */
-static void Auto_Threshold_Output(void)
+static inline void Auto_Threshold_Output(void)
 {
 	if(IsAutoThres)
 	{
@@ -123,8 +123,7 @@ int main(void)
     SystemCoreClockUpdate();
 #if !defined(NO_BOARD_LIB)
 #if defined (__MULTICORE_MASTER) || defined (__MULTICORE_NONE)
-    // Set up and initialize all required blocks and
-    // functions related to the board hardware
+    // Set up and initialize all required blocks and functions related to the board hardware
     Board_Init();
 
     Board_ADC_Init();
