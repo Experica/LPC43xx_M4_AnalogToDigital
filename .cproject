@@ -111,6 +111,7 @@
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
 							</tool>
+							<tool id="com.crt.advproject.tool.debug.debug.1581238424" name="MCU Debugger" superClass="com.crt.advproject.tool.debug.debug"/>
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
@@ -142,7 +143,9 @@
 							<builder buildPath="${workspace_loc:/LPC43xx_M4_AnalogToDigital}/Release" id="com.crt.advproject.builder.exe.release.1057084205" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="com.crt.advproject.builder.exe.release"/>
 							<tool id="com.crt.advproject.cpp.exe.release.299191740" name="MCU C++ Compiler" superClass="com.crt.advproject.cpp.exe.release">
 								<option id="com.crt.advproject.cpp.hdrlib.2087555441" superClass="com.crt.advproject.cpp.hdrlib"/>
-								<option id="gnu.cpp.compiler.option.preprocessor.def.1966363380" superClass="gnu.cpp.compiler.option.preprocessor.def"/>
+								<option id="gnu.cpp.compiler.option.preprocessor.def.1966363380" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="__MULTICORE_NONE"/>
+								</option>
 							</tool>
 							<tool id="com.crt.advproject.gcc.exe.release.417690658" name="MCU C Compiler" superClass="com.crt.advproject.gcc.exe.release">
 								<option id="com.crt.advproject.gcc.thumb.1959131543" name="Thumb mode" superClass="com.crt.advproject.gcc.thumb" value="true" valueType="boolean"/>
@@ -229,6 +232,7 @@
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
 								</inputType>
 							</tool>
+							<tool id="com.crt.advproject.tool.debug.release.960383132" name="MCU Debugger" superClass="com.crt.advproject.tool.debug.release"/>
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
@@ -250,8 +254,11 @@
 	<storageModule moduleId="com.crt.config">
 		<projectStorage>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&#13;
 &lt;TargetConfig&gt;&#13;
-&lt;Properties property_0="None" property_2="LPC18x7_43x7_2x512_BootA.cfx" property_3="NXP" property_4="LPC43S67" property_count="5" version="100200"/&gt;&#13;
-&lt;infoList vendor="NXP"&gt;&lt;info chip="LPC43S67" flash_driver="LPC18x7_43x7_2x512_BootA.cfx" match_id="0x0" name="LPC43S67" resetscript="LPC18LPC43InternalFLASHBootResetscript.scp" stub="crt_emu_lpc18_43_nxp"&gt;&lt;chip&gt;&lt;name&gt;LPC43S67&lt;/name&gt;&#13;
+&lt;Properties property_0="None" property_2="LPC18x7_43x7_2x512_BootA.cfx" property_3="NXP" property_4="LPC43S67" property_count="5" version="100300"/&gt;&#13;
+&lt;infoList vendor="NXP"&gt;&#13;
+&lt;info chip="LPC43S67" flash_driver="LPC18x7_43x7_2x512_BootA.cfx" match_id="0x0" name="LPC43S67" resetscript="LPC18LPC43InternalFLASHBootResetscript.scp" stub="crt_emu_lpc18_43_nxp"&gt;&#13;
+&lt;chip&gt;&#13;
+&lt;name&gt;LPC43S67&lt;/name&gt;&#13;
 &lt;family&gt;LPC43xx&lt;/family&gt;&#13;
 &lt;vendor&gt;NXP (formerly Philips)&lt;/vendor&gt;&#13;
 &lt;reset board="None" core="Real" sys="Real"/&gt;&#13;
@@ -324,7 +331,8 @@
 &lt;peripheralInstance derived_from="SPI" determined="infoFile" id="SPI" location="0x40100000"/&gt;&#13;
 &lt;peripheralInstance derived_from="SGPIO" determined="infoFile" id="SGPIO" location="0x40101000"/&gt;&#13;
 &lt;/chip&gt;&#13;
-&lt;processor&gt;&lt;name gcc_name="cortex-m4"&gt;Cortex-M4&lt;/name&gt;&#13;
+&lt;processor&gt;&#13;
+&lt;name gcc_name="cortex-m4"&gt;Cortex-M4&lt;/name&gt;&#13;
 &lt;family&gt;Cortex-M&lt;/family&gt;&#13;
 &lt;/processor&gt;&#13;
 &lt;link href="nxp_lpc43xx_peripheral.xme" show="embed" type="simple"/&gt;&#13;
