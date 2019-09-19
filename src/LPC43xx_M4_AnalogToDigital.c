@@ -4,7 +4,7 @@
  Author      : Li Alex Zhang
  Version     : 0.3
  Copyright   : Li Alex Zhang
- Description : Convert Analog(0-3.3V) Input(Ch2; Ch3) to Digital(0-5V, Active-High) Output(P1_3, GPIO0[10]; P1_4, GPIO0[11]), also Output Digitized Analog to Ch0 and Ch1.
+ Description : Convert Analog(0-3.3V) Input(Ch2; Ch3) to Digital(0/3.3V, Active-High) Output(P1_3, GPIO0[10]; P1_4, GPIO0[11]), also send Digitized Analog Input to Analog Output(Ch0; Ch1).
  	 	 	   Relay Digital Input(P1_5, GPIO1[8]) to Output(P1_6, GPIO1[9])
 ===============================================================================
 */
@@ -109,7 +109,7 @@ static inline void Auto_Threshold_ADOutput(void)
 			Chip_GPIO_SetPinState(LPC_GPIO_PORT, _GPIO_PORT_0, _GPIO_ADOUTPUT_PIN_0, ADOutput0);
 			Board_LED_Set(0, ADOutput0);
 		}
-		if(data0ADC<=threshold0Min)
+		else if(data0ADC<=threshold0Min)
 		{
 			ADOutput0 = false;
 			Chip_GPIO_SetPinState(LPC_GPIO_PORT, _GPIO_PORT_0, _GPIO_ADOUTPUT_PIN_0, ADOutput0);
@@ -122,7 +122,7 @@ static inline void Auto_Threshold_ADOutput(void)
 			Chip_GPIO_SetPinState(LPC_GPIO_PORT, _GPIO_PORT_0, _GPIO_ADOUTPUT_PIN_1, ADOutput1);
 			Board_LED_Set(1, ADOutput1);
 		}
-		if(data1ADC<=threshold1Min)
+		else if(data1ADC<=threshold1Min)
 		{
 			ADOutput1 = false;
 			Chip_GPIO_SetPinState(LPC_GPIO_PORT, _GPIO_PORT_0, _GPIO_ADOUTPUT_PIN_1, ADOutput1);
@@ -137,7 +137,7 @@ static inline void Relay_Digital(void)
 	if (DRelayIn != DRelayInLast)
 	{
 		Chip_GPIO_SetPinState(LPC_GPIO_PORT, _GPIO_PORT_1, _GPIO_DRELAYOUTPUT_PIN, DRelayIn);
-		Board_LED_Set(2, DRelayIn);
+		Board_LED_Set(3, DRelayIn);
 		DRelayInLast = DRelayIn;
 	}
 }
@@ -173,7 +173,6 @@ void SysTick_Handler(void)
 int main(void)
 {
 #if defined (__USE_LPCOPEN)
-    // Read clock settings and update SystemCoreClock variable
     SystemCoreClockUpdate();
 #if !defined(NO_BOARD_LIB)
 #if defined (__MULTICORE_MASTER) || defined (__MULTICORE_NONE)
@@ -198,7 +197,7 @@ int main(void)
 
     SysTick_Config(SystemCoreClock / SYSTICKRATE_HZ);
 #endif
-    Board_LED_Set(2, true);
+    Board_LED_Set(0, true);
 #endif
 #endif
 
