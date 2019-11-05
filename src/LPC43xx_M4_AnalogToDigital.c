@@ -33,8 +33,8 @@ static uint16_t data0ADCMax=0x0000;
 static uint16_t data0ADCMin=0xFFFF;
 static uint16_t data1ADCMax=0x0000;
 static uint16_t data1ADCMin=0xFFFF;
-static float thresholdMinRatio=0.3;
-static float thresholdMaxRatio=0.7;
+const float thresholdMinRatio=0.3; // Noise Margin is 30%
+const float thresholdMaxRatio=0.7;
 static uint16_t threshold0Min;
 static uint16_t threshold0Max;
 static uint16_t threshold1Min;
@@ -54,7 +54,7 @@ static bool DRelayIn = false;
 static bool DRelayInLast = false;
 
 #define SYSTICKRATE_HZ (1000)	// 1000 ticks per second, 1ms systick interrupt
-static uint32_t AutoADThresholdDuration = 5000; // 5000ms auto threshold period
+const uint32_t AutoADThresholdDuration = 5000; // 5000ms auto threshold period
 static uint32_t tick_n = 0;
 
 
@@ -201,14 +201,8 @@ int main(void)
 #endif
 #endif
 
-
-
-    // Force the counter to be placed into memory
-    volatile static int i = 0;
     while(1)
     {
-        i++;
-
         Relay_Digital();
         Polling_ADC();
         Polling_DAC();
